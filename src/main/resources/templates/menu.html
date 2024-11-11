@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>인하대 학생식당 중식 메뉴</title>
+</head>
+<body>
+<h1>인하대 학생식당 중식 메뉴</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>구분</th>
+        <th>메뉴</th>
+        <th>가격</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 크롤링한 메뉴 데이터가 삽입될 부분 -->
+    <th:block th:utext="${menu}"></th:block>
+    </tbody>
+</table>
+</body>
+</html>
