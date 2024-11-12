@@ -1,15 +1,21 @@
 package com.example.__project_marathon.service;
 
+import com.example.__project_marathon.model.Menu;
+import com.example.__project_marathon.repository.MenuRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Service
 public class MenuService {
+    @Autowired
+    private MenuRepository menuRepository;
 
     public String scrapeMenu() throws IOException {
         String url = "https://www.inha.ac.kr/kr/1072/subview.do";
@@ -35,6 +41,13 @@ public class MenuService {
                         .append("</td><td>").append(price).append("</td></tr>");
             }
         }
+
+        // Menu 엔티티 생성 및 저장
+        Menu menuEntity = Menu.builder()
+                .date(LocalDateTime.now())
+                .count(1)  // 일단 1로 설정
+                .build();
+        menuRepository.save(menuEntity);
 
         return menuHtml.toString();  // HTML 문자열 반환
     }
