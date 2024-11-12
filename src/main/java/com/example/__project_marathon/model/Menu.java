@@ -25,6 +25,10 @@ public class Menu extends BaseEntity{
     @Column(nullable = false)
     private Integer price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "meal_id", nullable = false)
+    private Meal meal;
+
     @Column(nullable = false)
     private Long areaId;  // 추후 fk로 설정 예정
 }
