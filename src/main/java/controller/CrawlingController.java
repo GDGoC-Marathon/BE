@@ -3,6 +3,7 @@ package controller;
 import domain.Restaurant;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.CrawlingService;
@@ -20,10 +21,13 @@ public class CrawlingController {
     private CrawlingService crawlingService;
 
     @GetMapping("/restaurant")
-    public List<Restaurant> getRestaurant(){
+    public String getRestaurant(Model model){
         String restaurantHtml = crawlingService.getHtmlFromUrl("https://www.inha.ac.kr/kr/1073/subview.do");
         Elements elements = crawlingService.selectFromHtml(restaurantHtml, tableTag);
+        List<Restaurant> restaurants = crawlingService.addRestaurant(elements, thTag, tdTag, tdLast);
 
-        return crawlingService.addRestaurant(elements, thTag, tdTag, tdLast);
+        model.addAttribute("restaurants", restaurants);
+        return "restaurant";
+
     }
 }
