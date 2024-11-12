@@ -39,15 +39,16 @@ public class MenuService {
             if (!category.isEmpty() && !menu.isEmpty()) {
                 menuHtml.append("<tr><td>").append(category).append("</td><td>").append(menu)
                         .append("</td><td>").append(price).append("</td></tr>");
+
+                // Menu 엔티티 생성 및 저장
+                Menu menuEntity = Menu.builder()
+                        .date(LocalDateTime.now())
+                        .count(1)  // 예시로 1로 설정
+                        .price(Integer.parseInt(price.replaceAll("[^0-9]", "")))  // 가격을 숫자로 변환
+                        .build();
+                menuRepository.save(menuEntity);
             }
         }
-
-        // Menu 엔티티 생성 및 저장
-        Menu menuEntity = Menu.builder()
-                .date(LocalDateTime.now())
-                .count(1)  // 일단 1로 설정
-                .build();
-        menuRepository.save(menuEntity);
 
         return menuHtml.toString();  // HTML 문자열 반환
     }
