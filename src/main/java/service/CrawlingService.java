@@ -23,4 +23,11 @@ public class CrawlingService {
         String html = restTemplate.getForObject(url, String.class);
         return html;
     }
+
+    public Elements selectFromHtml(String html, String selectRows){
+        Document doc = Jsoup.parse(html);
+        Elements rows = doc.select(selectRows);
+        return rows;
+    }
+
 }
