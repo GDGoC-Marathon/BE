@@ -40,6 +40,8 @@ public class CrawlingService {
 
             restaurants.add(new Restaurant(lunchName, lunchItems, price));
         }
+
+        return restaurants;
     }
 
     private String getTextFromHtml(Element row, String text){
