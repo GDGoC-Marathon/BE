@@ -3,10 +3,6 @@ package com.example.__project_marathon.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @Entity
@@ -22,6 +18,14 @@ public class Meal {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Menu> menus= new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id", nullable = false)
+    private Menu menu;
+
+    public static class MealBuilder {
+        public MealBuilder menu(Menu menu) {
+            this.menu = menu;
+            return this;
+        }
+    }
 }
