@@ -45,6 +45,7 @@ public class MenuService {
                         .date(LocalDateTime.now())
                         .count(1)  // 예시로 1로 설정
                         .price(Integer.parseInt(price.replaceAll("[^0-9]", "")))  // 가격을 숫자로 변환
+                        .areaId(1L)  // 예시로 1로 설정
                         .build();
                 menuRepository.save(menuEntity);
             }

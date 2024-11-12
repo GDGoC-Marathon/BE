@@ -25,5 +25,6 @@ public class Menu extends BaseEntity{
     @Column(nullable = false)
     private Integer price;
 
-    // area_id(fk)
+    @Column(nullable = false)
+    private Long areaId;  // 추후 fk로 설정 예정
 }

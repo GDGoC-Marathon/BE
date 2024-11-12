@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:(rds end point):3306/gdg_be_study
-    username: (username)
-    password: (password)
+    url: jdbc:mysql://localhost:3306/marathon
+    username: root
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
