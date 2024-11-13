@@ -26,30 +26,36 @@ public class MenuService {
         String url = "https://www.inha.ac.kr/kr/1072/subview.do";
         Document doc = Jsoup.connect(url).get();
 
-        Element table = doc.select("div.table_1 table").first();
+        Element lunchSection = doc.select("h3:contains(중식)").first().parent();
+        Element table = lunchSection.select("div.table_1 table").first();
         Elements rows = table.select("tr");
 
         StringBuilder menuHtml = new StringBuilder();
 
         for (Element row : rows) {
             String category = row.select("th").text();
-            String menuName = row.select("td.left").text();
+            String menuName = row.select("td.left").html();
+            //String menuName = row.select("td.left").text();
 
             String price = "";
             Elements tdElements = row.select("td");
-            if (!tdElements.isEmpty()) {
-                price = tdElements.last() != null ? tdElements.last().text() : "가격 정보 없음";
+            if (!tdElements.isEmpty() && tdElements.last() != null) {
+                price = tdElements.last().text();
+            }
+            if (price.isEmpty()) {
+                price = "0";  // 가격 정보가 없을 경우 기본값 설정
             }
 
             if (!category.isEmpty() && !menuName.isEmpty()) {
                 menuHtml.append("<tr><td>").append(category).append("</td><td>").append(menuName)
                         .append("</td><td>").append(price).append("</td></tr>");
 
+                System.out.println(price);
                 // Menu 엔티티 생성 및 저장
                 Menu menuEntity = Menu.builder()
                         .date(LocalDateTime.now())
                         .count(1)  // 예시로 1로 설정
-                        .price(Integer.parseInt(price.replaceAll("[^0-9]", "")))  // 가격을 숫자로 변환
+                        .price(Integer.parseInt(price.replaceAll("[^0-9]", "0")))  // 가격을 숫자로 변환
                         .areaId(1L)  // 예시로 1로 설정
                         .build();
 
