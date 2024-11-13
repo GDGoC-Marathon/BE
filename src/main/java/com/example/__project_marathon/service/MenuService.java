@@ -26,50 +26,54 @@ public class MenuService {
         String url = "https://www.inha.ac.kr/kr/1072/subview.do";
         Document doc = Jsoup.connect(url).get();
 
-        Element lunchSection = doc.select("h3:contains(중식)").first().parent();
-        Element table = lunchSection.select("div.table_1 table").first();
-        Elements rows = table.select("tr");
+        Elements lunchSections = doc.select("h3:contains(중식)");
 
         StringBuilder menuHtml = new StringBuilder();
 
-        for (Element row : rows) {
-            String category = row.select("th").text();
-            String menuName = row.select("td.left").html();
-            //String menuName = row.select("td.left").text();
+        for (Element lunchSection : lunchSections) {
+            Element parent = lunchSection.parent();
+            Element table = parent.select("div.table_1 table").first();
+            Elements rows = table.select("tr");
 
-            String price = "";
-            Elements tdElements = row.select("td");
-            if (!tdElements.isEmpty() && tdElements.last() != null) {
-                price = tdElements.last().text();
-            }
-            if (price.isEmpty()) {
-                price = "0";  // 가격 정보가 없을 경우 기본값 설정
-            }
+            for (Element row : rows) {
+                String category = row.select("th").text();
+                String menuName = row.select("td.left").html();
+                //String menuName = row.select("td.left").text();
 
-            if (!category.isEmpty() && !menuName.isEmpty()) {
-                menuHtml.append("<tr><td>").append(category).append("</td><td>").append(menuName)
-                        .append("</td><td>").append(price).append("</td></tr>");
-
-                System.out.println(price);
-                // Menu 엔티티 생성 및 저장
-                Menu menuEntity = Menu.builder()
-                        .date(LocalDateTime.now())
-                        .count(1)  // 예시로 1로 설정
-                        .price(Integer.parseInt(price.replaceAll("[^0-9]", "0")))  // 가격을 숫자로 변환
-                        .areaId(1L)  // 예시로 1로 설정
-                        .build();
-
-                // menuName을 공백으로 분리하여 각각의 Meal 엔티티 생성 및 저장
-                String[] mealNames = menuName.split("\\s+");
-                for (String mealName : mealNames) {
-                    Meal meal = Meal.builder()
-                            .name(mealName)
-                            .menu(menuEntity)  // Menu 엔티티와 연관 설정
-                            .build();
-                    menuEntity.addMeal(meal);  // Menu 엔티티에 Meal 엔티티 추가
+                String price = "";
+                Elements tdElements = row.select("td");
+                if (!tdElements.isEmpty() && tdElements.last() != null) {
+                    price = tdElements.last().text();
+                }
+                if (price.isEmpty()) {
+                    price = "0";  // 가격 정보가 없을 경우 기본값 설정
                 }
 
-                menuRepository.save(menuEntity);  // Menu 엔티티와 연관된 Meal 엔티티 저장
+                if (!category.isEmpty() && !menuName.isEmpty()) {
+                    menuHtml.append("<tr><td>").append(category).append("</td><td>").append(menuName)
+                            .append("</td><td>").append(price).append("</td></tr>");
+
+                    System.out.println(price);
+                    // Menu 엔티티 생성 및 저장
+                    Menu menuEntity = Menu.builder()
+                            .date(LocalDateTime.now())
+                            .count(1)  // 예시로 1로 설정
+                            .price(Integer.parseInt(price.replaceAll("[^0-9]", "0")))  // 가격을 숫자로 변환
+                            .areaId(1L)  // 예시로 1로 설정
+                            .build();
+
+                    // menuName을 공백으로 분리하여 각각의 Meal 엔티티 생성 및 저장
+                    String[] mealNames = menuName.split("\\s+");
+                    for (String mealName : mealNames) {
+                        Meal meal = Meal.builder()
+                                .name(mealName)
+                                .menu(menuEntity)  // Menu 엔티티와 연관 설정
+                                .build();
+                        menuEntity.addMeal(meal);  // Menu 엔티티에 Meal 엔티티 추가
+                    }
+
+                    menuRepository.save(menuEntity);  // Menu 엔티티와 연관된 Meal 엔티티 저장
+                }
             }
         }
 
