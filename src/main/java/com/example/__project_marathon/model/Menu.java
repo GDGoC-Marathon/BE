@@ -29,6 +29,12 @@ public class Menu extends BaseEntity {
     @Column(nullable = false)
     private Integer price;
 
+    @Column(nullable = false)
+    private String area;
+
+    @Column(nullable = false)
+    private String Category;
+
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Meal> meals = new ArrayList<>();
