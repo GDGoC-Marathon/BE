@@ -16,8 +16,8 @@
     <tbody>
     <!-- 'restaurants' 리스트를 반복하며 데이터 표시 -->
     <tr th:each="restaurant : ${restaurants}">
-        <td th:text="${restaurant.name}"></td> <!-- 식당 이름 -->
-        <td th:text="${restaurant.menu}"></td> <!-- 메뉴 -->
+        <td th:text="${restaurant.lunchName}"></td> <!-- 식당 이름 -->
+        <td th:text="${restaurant.lunchItems}"></td> <!-- 메뉴 -->
         <td th:text="${restaurant.price}"></td> <!-- 가격 -->
     </tr>
     </tbody>
