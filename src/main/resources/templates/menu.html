@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<!-- 임시 html 파일 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
-    <title>Lunch Menu</title>
+    <meta charset="UTF-8">
+    <title>인하대 학생식당 중식 메뉴</title>
 </head>
 <body>
-<h1>Lunch Menu</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Category</th>
-        <th>Menu</th>
-        <th>Price</th>
-    </tr>
-    </thead>
-    <tbody th:utext="${menu}">
-    </tbody>
-</table>
+<h1>인하대 학생식당 중식 메뉴</h1>
+<div>
+    <!-- MenuService에서 전달받은 주간 범위, 날짜, 시간, 메뉴 데이터를 표시 -->
+    <th:block th:utext="${menu}"></th:block>
+</div>
 </body>
 </html>
