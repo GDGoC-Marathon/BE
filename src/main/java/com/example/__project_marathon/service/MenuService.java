@@ -23,6 +23,18 @@ public class MenuService {
         return menuRepository.save(menu);
     }
 
+    public Menu incrementMenuCountBy(Long id, int amount) {
+        Menu menu = menuRepository.findById(id).orElseThrow(() -> new RuntimeException("Menu not found"));
+        menu.setCount(menu.getCount() + amount);
+        return menuRepository.save(menu);
+    }
+
+    public Menu decrementMenuCountBy(Long id, int amount) {
+        Menu menu = menuRepository.findById(id).orElseThrow(() -> new RuntimeException("Menu not found"));
+        menu.setCount(menu.getCount() - amount);
+        return menuRepository.save(menu);
+    }
+
     public void saveMenu(Menu menuEntity, String[] mealNames) {
         for (String mealName : mealNames) {
             mealName = mealName.replace("<br>", "").replace("&amp;", "&").trim();

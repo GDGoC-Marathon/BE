@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MenuController {
@@ -37,5 +38,15 @@ public class MenuController {
     @GetMapping("/{id}/decrement-count")
     public Menu decrementMenuCount(@PathVariable Long id) {
         return menuService.decrementMenuCount(id);
+    }
+
+    @GetMapping("/{id}/increment-count-by")
+    public Menu incrementMenuCountBy(@PathVariable Long id, @RequestParam int amount) {
+        return menuService.incrementMenuCountBy(id, amount);
+    }
+
+    @GetMapping("/{id}/decrement-count-by")
+    public Menu decrementMenuCountBy(@PathVariable Long id, @RequestParam int amount) {
+        return menuService.decrementMenuCountBy(id, amount);
     }
 }
