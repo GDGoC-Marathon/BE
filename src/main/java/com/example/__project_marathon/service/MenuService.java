@@ -6,6 +6,8 @@ import com.example.__project_marathon.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MenuService {
     @Autowired
@@ -47,5 +49,9 @@ public class MenuService {
             }
         }
         menuRepository.save(menuEntity);
+    }
+
+    public List<Menu> getAllMenus() {
+        return menuRepository.findAll();
     }
 }

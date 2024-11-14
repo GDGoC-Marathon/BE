@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class MenuController {
 
@@ -48,5 +50,12 @@ public class MenuController {
     @GetMapping("/{id}/decrement-count-by")
     public Menu decrementMenuCountBy(@PathVariable Long id, @RequestParam int amount) {
         return menuService.decrementMenuCountBy(id, amount);
+    }
+
+    @GetMapping("/admin-page")
+    public String getAdminPage(Model model) {
+        List<Menu> menus = menuService.getAllMenus();
+        model.addAttribute("menus", menus);
+        return "adminpage";
     }
 }
