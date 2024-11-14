@@ -33,14 +33,11 @@ public class Menu extends BaseEntity {
     private String area;
 
     @Column(nullable = false)
-    private String Category;
+    private String category;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Meal> meals = new ArrayList<>();
-
-    @Column(nullable = false)
-    private Long areaId;  // 추후 fk로 설정 예정
 
     public void addMeal(Meal meal) {
         meals.add(meal);

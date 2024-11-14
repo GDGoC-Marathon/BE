@@ -62,7 +62,8 @@ public class MenuScraperService {
                                 .date(LocalDate.parse(formattedDate, DateTimeFormatter.ISO_DATE))
                                 .count(1)
                                 .price(Integer.parseInt(price.replaceAll("[^0-9]", "0")))
-                                .areaId(1L)
+                                .area("학생식당")
+                                .category(category)
                                 .build();
 
                         String[] mealNames = menu.split("\\s+");
