@@ -13,4 +13,6 @@ public class MenuDto {
     private LocalDateTime date;
     private Integer count;
     private Integer price;
+    private String area;
+    private String Category;
 }
