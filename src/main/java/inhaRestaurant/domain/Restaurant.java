@@ -1,5 +1,8 @@
-package domain;
+package inhaRestaurant.domain;
 
+import lombok.Getter;
+
+@Getter
 public class Restaurant {
 
     private String lunchName;
