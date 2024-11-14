@@ -25,11 +25,14 @@ public class MenuService {
 
     public void saveMenu(Menu menuEntity, String[] mealNames) {
         for (String mealName : mealNames) {
-            Meal meal = Meal.builder()
-                    .name(mealName)
-                    .menu(menuEntity)
-                    .build();
-            menuEntity.addMeal(meal);
+            mealName = mealName.replace("<br>", "").replace("&amp;", "&").trim();
+            if (!mealName.isEmpty()) {
+                Meal meal = Meal.builder()
+                        .name(mealName)
+                        .menu(menuEntity)
+                        .build();
+                menuEntity.addMeal(meal);
+            }
         }
         menuRepository.save(menuEntity);
     }
