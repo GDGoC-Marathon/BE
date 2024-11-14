@@ -79,4 +79,16 @@ public class MenuService {
 
         return menuHtml.toString();  // HTML 문자열 반환
     }
+
+    public Menu incrementMenuCount(Long id) {
+        Menu menu = menuRepository.findById(id).orElseThrow(() -> new RuntimeException("Menu not found"));
+        menu.setCount(menu.getCount() + 1);
+        return menuRepository.save(menu);
+    }
+
+    public Menu decrementMenuCount(Long id) {
+        Menu menu = menuRepository.findById(id).orElseThrow(() -> new RuntimeException("Menu not found"));
+        menu.setCount(menu.getCount() - 1);
+        return menuRepository.save(menu);
+    }
 }
