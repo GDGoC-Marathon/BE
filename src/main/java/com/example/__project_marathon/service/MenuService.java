@@ -1,5 +1,6 @@
 package com.example.__project_marathon.service;
 
+import com.example.__project_marathon.model.Meal;
 import com.example.__project_marathon.model.Menu;
 import com.example.__project_marathon.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,16 @@ public class MenuService {
         Menu menu = menuRepository.findById(id).orElseThrow(() -> new RuntimeException("Menu not found"));
         menu.setCount(menu.getCount() - 1);
         return menuRepository.save(menu);
+    }
+
+    public void saveMenu(Menu menuEntity, String[] mealNames) {
+        for (String mealName : mealNames) {
+            Meal meal = Meal.builder()
+                    .name(mealName)
+                    .menu(menuEntity)
+                    .build();
+            menuEntity.addMeal(meal);
+        }
+        menuRepository.save(menuEntity);
     }
 }

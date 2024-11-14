@@ -1,8 +1,6 @@
 package com.example.__project_marathon.service;
 
-import com.example.__project_marathon.model.Meal;
 import com.example.__project_marathon.model.Menu;
-import com.example.__project_marathon.repository.MenuRepository;
 import com.example.__project_marathon.util.DateUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class MenuScraperService {
     @Autowired
-    private MenuRepository menuRepository;
+    private MenuService menuService;
 
     public String scrapeMenu() throws IOException {
         String url = "https://www.inha.ac.kr/kr/1072/subview.do";
@@ -68,15 +66,7 @@ public class MenuScraperService {
                                 .build();
 
                         String[] mealNames = menu.split("\\s+");
-                        for (String mealName : mealNames) {
-                            Meal meal = Meal.builder()
-                                    .name(mealName)
-                                    .menu(menuEntity)
-                                    .build();
-                            menuEntity.addMeal(meal);
-                        }
-
-                        menuRepository.save(menuEntity);
+                        menuService.saveMenu(menuEntity, mealNames);
                     }
                 }
                 menuHtml.append("</tbody></table>");
