@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class CommentService {
 
     @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Transactional
     public CommentDto createComment(CommentDto commentDto){
