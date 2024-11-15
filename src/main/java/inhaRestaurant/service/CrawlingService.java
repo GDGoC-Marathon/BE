@@ -7,27 +7,32 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
 import org.springframework.stereotype.Service;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Slf4j
 @Service
 public class CrawlingService {
 
-    private static final String nextLineHtml = "<br>";
-    private static final String nextLineCode = "\n";
+    private final String nextLineHtml = "<br>";
+    private final String nextLineCode = "\n";
+    private final String lunch = "중식";
+    private final String tableTag = "table";
+    private final String divTag = "div.foodInfoWrap";
+    private final String findH2Tag = "h2.objHeading_h2";
 
     public Document getHtmlFromUrl(String url) {
         try {
             Document doc = Jsoup.connect(url).get();
-            log.info("document fetched successfully : " + doc.title());
             return doc;
         } catch (Exception e) {
-            return null;
+            throw new IllegalArgumentException("해당 url 주소를 가져올 수 없습니다.");
         }
     }
 
@@ -38,20 +43,37 @@ public class CrawlingService {
 
     public List<Restaurant> addRestaurant(Elements rows, String selectTag1, String selectTag2, String selectTag3){
         List<Restaurant> restaurants = new ArrayList<>();
-
         for(Element row : rows){
-            log.info("Element 내용: " + row.text());  // 각 element의 텍스트만 출력
-            log.info("Element HTML: " + row.html());
+            String day = getDayFromHtml(row);
             String lunchName = getTextFromHtml(row, selectTag1);
-
-            log.info(lunchName);
             String lunchItems = getHtmlFromHtml(row, selectTag2);
             String price = getTextFromLastHtml(row, selectTag3);
-
-            restaurants.add(new Restaurant(lunchName, lunchItems, price));
+            log.info("식사 종류 : " + lunchName);
+            if(isLunch(lunchName)){
+                restaurants.add(new Restaurant(day, lunchName, lunchItems, price));
+            }
         }
 
         return restaurants;
+    }
+
+    private boolean isLunch(String lunchName){
+        String kindOfMeal = lunchName.trim().replaceAll("\\s+", "");
+        if(kindOfMeal.contains(lunch)) {
+            return true;
+        }
+        return false;
+    }
+
+    private String getDayFromHtml(Element row){
+        Element table = row.closest(tableTag);
+        Element headingElement = table.closest(divTag)
+                .previousElementSibling()
+                .select(findH2Tag)
+                .first();// h2 태그 선택
+
+        String dayText = headingElement.text();
+        return dayText;
     }
 
     private String getTextFromHtml(Element row, String text){
