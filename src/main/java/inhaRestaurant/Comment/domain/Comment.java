@@ -21,7 +21,7 @@ public class Comment {
         this.content = content;
     }
 
-    public Comment createComment(CommentDto commentDto){
+    public static Comment createComment(CommentDto commentDto){
         if(commentDto.getId() != null){
             throw new IllegalArgumentException("dto 존재하지 않습니다.");
         }
