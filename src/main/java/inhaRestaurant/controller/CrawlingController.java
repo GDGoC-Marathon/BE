@@ -31,11 +31,6 @@ public class CrawlingController {
         Document htmlInha = crawlingService.getHtmlFromUrl(url);
         Elements elements = crawlingService.selectFromHtml(htmlInha, tableTag);
         List<Restaurant> restaurants = crawlingService.addRestaurant(elements, thTag, tdTag, tdLast);
-        for (Restaurant restaurant : restaurants) {
-            log.info("restaurant 내용: " + restaurant.getLunchName());
-            log.info("restaurant 내용: " + restaurant.getLunchItems());
-            log.info("restaurant 내용: " + restaurant.getPrice());
-        }
         model.addAttribute("restaurants", restaurants);
         return "professorRestaurant";
     }
