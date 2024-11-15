@@ -25,4 +25,10 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.OK).body(commentDtos);
     }
 
+    @PostMapping("/api/restaurant/comment")
+    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentBody){
+        CommentDto comment = commentService.createComment(commentBody);
+        return ResponseEntity.status(HttpStatus.OK).body(comment);
+    }
+
 }
