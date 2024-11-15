@@ -8,6 +8,5 @@ import java.util.ArrayList;
 public interface CommentRepository extends JpaRepository<Comment, String> {
 
     ArrayList<Comment> finaAll();
-    void save();
 
 }
