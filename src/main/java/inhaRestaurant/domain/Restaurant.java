@@ -16,4 +16,5 @@ public class Restaurant {
         this.lunchItems = lunchItems;
         this.price = price;
     }
+
 }
