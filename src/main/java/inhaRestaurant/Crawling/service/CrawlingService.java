@@ -1,20 +1,15 @@
-package inhaRestaurant.service;
+package inhaRestaurant.Crawling.service;
 
-import inhaRestaurant.domain.Restaurant;
+import inhaRestaurant.Crawling.domain.Restaurant;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
 import org.springframework.stereotype.Service;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Slf4j
 @Service

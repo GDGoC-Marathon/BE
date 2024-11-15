@@ -1,4 +1,4 @@
-package inhaRestaurant.domain;
+package inhaRestaurant.Crawling.domain;
 
 import lombok.Getter;
 

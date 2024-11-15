@@ -1,15 +1,14 @@
-package inhaRestaurant.controller;
+package inhaRestaurant.Crawling.controller;
 
-import inhaRestaurant.domain.Restaurant;
+import inhaRestaurant.Crawling.domain.Restaurant;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import inhaRestaurant.service.CrawlingService;
+import inhaRestaurant.Crawling.service.CrawlingService;
 
 import java.util.List;
 
