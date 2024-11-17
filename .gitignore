@@ -43,3 +43,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+src/main/templates/applications.yml
+src/main/templates/application.properties
