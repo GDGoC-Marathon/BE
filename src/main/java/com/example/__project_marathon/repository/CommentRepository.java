@@ -13,6 +13,6 @@ public interface CommentRepository extends JpaRepository<Comment, String> {
 
     ArrayList<Comment> findAll();
     @Query(value = "SELECT * FROM Comment WHERE content Like %?1%", nativeQuery = true)
-    List<Comment> findByStoreId(String content);
+    List<Comment> findByCommentContent(String content);
 
 }
