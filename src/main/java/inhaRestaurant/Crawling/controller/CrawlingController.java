@@ -33,4 +33,5 @@ public class CrawlingController {
         model.addAttribute("restaurants", restaurants);
         return "professorRestaurant";
     }
+
 }

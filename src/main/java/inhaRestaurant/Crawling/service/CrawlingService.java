@@ -82,4 +82,5 @@ public class CrawlingService {
     private String getTextFromLastHtml(Element row, String text){
         return row.select(text).last().text();
     }
+
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+    <script>
+        function updateCount(action) {
+            var checkboxes = document.querySelectorAll('input[name="menuCheckbox"]:checked');
+            var countInput = document.getElementById('countInput');
+            var count = countInput.value ? parseInt(countInput.value) : 1;
+
+            checkboxes.forEach(function(checkbox) {
+                var menuId = checkbox.value;
+                var url = `/${menuId}/${action}-count-by?amount=${count}`;
+                fetch(url, { method: 'GET' })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        location.reload();
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>관리자 페이지</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>선택</th>
+        <th>ID</th>
+        <th>날짜</th>
+        <th>수량</th>
+        <th>가격</th>
+        <th>지역</th>
+        <th>카테고리</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="menu : ${menus}">
+        <td><input type="checkbox" name="menuCheckbox" th:value="${menu.id}"></td>
+        <td th:text="${menu.id}"></td>
+        <td th:text="${menu.date}"></td>
+        <td th:text="${menu.count}"></td>
+        <td th:text="${menu.price}"></td>
+        <td th:text="${menu.area}"></td>
+        <td th:text="${menu.category}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <input type="number" id="countInput" placeholder="Count">
+    <button onclick="updateCount('increment')">증가</button>
+    <button onclick="updateCount('decrement')">감소</button>
+</div>
+</body>
+</html>
