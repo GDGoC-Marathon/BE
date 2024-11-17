@@ -1,8 +1,8 @@
-package inhaRestaurant.Comment.service;
+package com.example.__project_marathon.service;
 
-import inhaRestaurant.Comment.domain.Comment;
-import inhaRestaurant.Comment.domain.CommentDto;
-import inhaRestaurant.Comment.repository.CommentRepository;
+import com.example.__project_marathon.dto.CommentDto;
+import com.example.__project_marathon.repository.CommentRepository;
+import com.example.__project_marathon.model.Comment;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class CommentService {
 
     @Transactional
     public List<CommentDto> comments(){
-        return commentRepository.finaAll()
+        return commentRepository.findAll()
                 .stream()
                 .map(CommentDto::createCommentDto)
                 .collect(Collectors.toList());

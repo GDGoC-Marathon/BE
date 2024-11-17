@@ -1,5 +1,6 @@
-package inhaRestaurant.Comment.domain;
+package com.example.__project_marathon.model;
 
+import com.example.__project_marathon.dto.CommentDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

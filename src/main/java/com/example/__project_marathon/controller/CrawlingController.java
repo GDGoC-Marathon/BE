@@ -1,6 +1,7 @@
-package inhaRestaurant.Crawling.controller;
+package com.example.__project_marathon.controller;
 
-import inhaRestaurant.Crawling.domain.Restaurant;
+import com.example.__project_marathon.service.CrawlingService;
+import com.example.__project_marathon.model.Restaurant;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import inhaRestaurant.Crawling.service.CrawlingService;
 
 import java.util.List;
 

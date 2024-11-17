@@ -1,6 +1,6 @@
-package inhaRestaurant.Crawling.service;
+package com.example.__project_marathon.service;
 
-import inhaRestaurant.Crawling.domain.Restaurant;
+import com.example.__project_marathon.model.Restaurant;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,4 +1,4 @@
-package inhaRestaurant.Crawling.domain;
+package com.example.__project_marathon.model;
 
 import lombok.Getter;
 

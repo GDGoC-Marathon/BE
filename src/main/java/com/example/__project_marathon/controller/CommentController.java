@@ -1,7 +1,7 @@
-package inhaRestaurant.Comment.controller;
+package com.example.__project_marathon.controller;
 
-import inhaRestaurant.Comment.domain.CommentDto;
-import inhaRestaurant.Comment.service.CommentService;
+import com.example.__project_marathon.dto.CommentDto;
+import com.example.__project_marathon.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
-package inhaRestaurant.Comment.domain;
+package com.example.__project_marathon.dto;
 
+import com.example.__project_marathon.model.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
