@@ -1,36 +1,27 @@
 package com.example.__project_marathon.model;
 
-import com.example.__project_marathon.dto.CommentDto;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity(name = "inhaRestaurantComment")
-@NoArgsConstructor
 @Getter
-public class Comment {
+@Setter
+@Entity
+@Builder
+@Table(name = "COMMENT")
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
+
     @Column
-    private String writerName;
+    private String writer;
+
     @Column
     private String content;
 
-    public Comment(String writerName, String content){
-        this.writerName = writerName;
-        this.content = content;
-    }
-
-    public static Comment createComment(CommentDto commentDto){
-        if(commentDto.getId() != null){
-            throw new IllegalArgumentException("dto 존재하지 않습니다.");
-        }
-
-        return new Comment(
-                commentDto.getWriterName(),
-                commentDto.getContent()
-        );
-    }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id", nullable = false)
+    private Menu menu;
 }
