@@ -70,10 +70,12 @@ public class ProfessorMenuScraperService {
 
                     String[] mealNames = menu.split("\\s+");
                     menuService.saveMenu(menuEntity, mealNames);
+
                 }
             }
         }
 
         return menuHtml.toString();
     }
+
 }

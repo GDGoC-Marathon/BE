@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 public class StudentMenuScraperService {
+
     @Autowired
     private MenuService menuService;
 
@@ -85,4 +86,5 @@ public class StudentMenuScraperService {
 
         return menuHtml.toString();
     }
+
 }

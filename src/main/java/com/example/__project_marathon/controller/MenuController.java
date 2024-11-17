@@ -36,7 +36,6 @@ public class MenuController {
     public String getStudent(Model model) throws Exception {
         // MenuService에서 크롤링한 데이터를 가져오기
         String menuHtml = studentMenuScraperService.scrapeMenu();
-
         // 모델에 데이터를 담아 menu.html로 전달
         model.addAttribute("menu", menuHtml);
 
@@ -47,7 +46,6 @@ public class MenuController {
     public String getProfessor(Model model) throws IOException {
         // MenuService에서 크롤링한 데이터를 가져오기
         String menuHtml = professorMenuScraperService.scrapeMenu();
-
         // 모델에 데이터를 담아 menu.html로 전달
         model.addAttribute("menu", menuHtml);
 
@@ -80,4 +78,5 @@ public class MenuController {
         model.addAttribute("menus", menus);
         return "adminpage";
     }
+
 }

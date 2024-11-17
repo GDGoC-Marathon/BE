@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class MealDto {
+
     private Long id;
     private String name;
+
 }

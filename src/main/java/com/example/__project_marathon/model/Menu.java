@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -52,4 +53,5 @@ public class Menu extends BaseEntity {
         meals.remove(meal);
         meal.setMenu(null);
     }
+
 }

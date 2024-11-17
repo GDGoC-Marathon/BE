@@ -8,7 +8,9 @@ import lombok.Setter;
 @Setter
 @Builder
 public class TodayDto {
+
     private Long id;
     private Integer count;
     private String img_url;
+
 }

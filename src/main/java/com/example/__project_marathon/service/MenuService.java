@@ -54,4 +54,5 @@ public class MenuService {
     public List<Menu> getAllMenus() {
         return menuRepository.findAll();
     }
+
 }
