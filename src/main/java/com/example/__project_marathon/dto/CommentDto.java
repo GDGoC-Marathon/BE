@@ -8,16 +8,7 @@ import lombok.Getter;
 @Getter
 public class CommentDto {
 
-    private String id;
-    private String writerName;
+    private Long id;
+    private String writer;
     private String content;
-
-    public static CommentDto createCommentDto(Comment comment){
-        return new CommentDto(
-                comment.getId(),
-                comment.getWriterName(),
-                comment.getContent()
-        );
-    }
-
 }

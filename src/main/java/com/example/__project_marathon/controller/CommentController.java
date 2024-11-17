@@ -15,20 +15,20 @@ import java.util.List;
 @RestController
 public class CommentController {
 
-    @Autowired
-    private CommentService commentService;
-
-    @GetMapping("/api/restaurant/comment")
-    public ResponseEntity<List<CommentDto>> comments(){
-        List<CommentDto> commentDtos = commentService.comments();
-
-        return ResponseEntity.status(HttpStatus.OK).body(commentDtos);
-    }
-
-    @PostMapping("/api/restaurant/comment")
-    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentBody){
-        CommentDto comment = commentService.createComment(commentBody);
-        return ResponseEntity.status(HttpStatus.OK).body(comment);
-    }
+//    @Autowired
+//    private CommentService commentService;
+//
+//    @GetMapping("/api/restaurant/comment")
+//    public ResponseEntity<List<CommentDto>> comments(){
+//        List<CommentDto> commentDtos = commentService.comments();
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(commentDtos);
+//    }
+//
+//    @PostMapping("/api/restaurant/comment")
+//    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentBody){
+//        CommentDto comment = commentService.createComment(commentBody);
+//        return ResponseEntity.status(HttpStatus.OK).body(comment);
+//    }
 
 }

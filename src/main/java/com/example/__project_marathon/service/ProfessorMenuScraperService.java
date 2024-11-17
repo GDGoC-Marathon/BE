@@ -45,6 +45,9 @@ public class ProfessorMenuScraperService {
                 Element priceElement = lunchSection.select("td").last();
                 String price = (priceElement != null) ? priceElement.text() : "0";
 
+                // 숫자가 아닌 문자를 제거하여 가격을 정수 형태로 변환
+                price = price.replaceAll("[^0-9]", "");
+
                 if (!category.isEmpty() && !menu.isEmpty()) {
                     menuHtml.append("<h3>").append(category).append("</h3>");
                     menuHtml.append("<p>").append(menu).append("</p>");
@@ -52,7 +55,7 @@ public class ProfessorMenuScraperService {
 
                     int priceValue = 0;
                     try {
-                        priceValue = Integer.parseInt(price.replaceAll("[^0-9]", "0"));
+                        priceValue = Integer.parseInt(price);
                     } catch (NumberFormatException e) {
                         priceValue = 0;
                     }
