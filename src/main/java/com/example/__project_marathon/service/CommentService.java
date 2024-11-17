@@ -13,23 +13,23 @@ import java.util.stream.Collectors;
 @Service
 public class CommentService {
 
-    @Autowired
-    private CommentRepository commentRepository;
-
-    @Transactional
-    public CommentDto createComment(CommentDto commentDto){
-        Comment comment = Comment.createComment(commentDto);
-        Comment createdComment = commentRepository.save(comment);
-
-        return CommentDto.createCommentDto(createdComment);
-    }
-
-    @Transactional
-    public List<CommentDto> comments(){
-        return commentRepository.findAll()
-                .stream()
-                .map(CommentDto::createCommentDto)
-                .collect(Collectors.toList());
-    }
+//    @Autowired
+//    private CommentRepository commentRepository;
+//
+//    @Transactional
+//    public CommentDto createComment(CommentDto commentDto){
+//        Comment comment = Comment.createComment(commentDto);
+//        Comment createdComment = commentRepository.save(comment);
+//
+//        return CommentDto.createCommentDto(createdComment);
+//    }
+//
+//    @Transactional
+//    public List<CommentDto> comments(){
+//        return commentRepository.findAll()
+//                .stream()
+//                .map(CommentDto::createCommentDto)
+//                .collect(Collectors.toList());
+//    }
 
 }

@@ -53,6 +53,7 @@ public class StudentMenuScraperService {
                     if (!tdElements.isEmpty() && tdElements.last() != null) {
                         price = tdElements.last().text();
                     }
+                    System.out.println("price: " + price);
 
                     if (!category.isEmpty() && !menu.isEmpty()) {
                         menuHtml.append("<tr><td>").append(category).append("</td><td>").append(menu)
