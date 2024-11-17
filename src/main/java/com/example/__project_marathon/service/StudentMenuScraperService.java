@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Service
-public class MenuScraperService {
+public class StudentMenuScraperService {
     @Autowired
     private MenuService menuService;
 
@@ -58,10 +58,18 @@ public class MenuScraperService {
                         menuHtml.append("<tr><td>").append(category).append("</td><td>").append(menu)
                                 .append("</td><td>").append(price).append("</td></tr>");
 
+                        int priceValue = 0;
+                        try {
+                            priceValue = Integer.parseInt(price.replaceAll("[^0-9]", "0"));
+                        } catch (NumberFormatException e) {
+                            // 빈 문자열 또는 숫자가 아닌 문자열을 기본값 0으로 처리
+                            priceValue = 0;
+                        }
+
                         Menu menuEntity = Menu.builder()
                                 .date(LocalDate.parse(formattedDate, DateTimeFormatter.ISO_DATE))
                                 .count(1)
-                                .price(Integer.parseInt(price.replaceAll("[^0-9]", "0")))
+                                .price(priceValue)
                                 .area("학생식당")
                                 .category(category)
                                 .build();
