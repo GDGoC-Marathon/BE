@@ -39,6 +39,10 @@ public class Menu extends BaseEntity {
     @Builder.Default
     private List<Meal> meals = new ArrayList<>();
 
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Today> todays = new ArrayList<>();
+
     public void addMeal(Meal meal) {
         meals.add(meal);
         meal.setMenu(this);
