@@ -45,3 +45,10 @@ bin/
 .DS_Store
 src/main/resources/application.yml
 src/main/resources/application.properties
+/.idea/gradle.xml
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
+/HELP.md
+/.idea/misc.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml

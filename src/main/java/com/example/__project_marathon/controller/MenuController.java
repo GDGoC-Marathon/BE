@@ -5,18 +5,12 @@ import com.example.__project_marathon.service.ProfessorMenuScraperService;
 import com.example.__project_marathon.service.StudentMenuScraperService;
 import com.example.__project_marathon.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.lang.model.util.Elements;
-import javax.swing.text.Document;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 public class MenuController {
     private final String tableTag = ".table_1 tbody tr";
     private final String thTag = "th[scope=row]";
@@ -33,23 +27,13 @@ public class MenuController {
     private ProfessorMenuScraperService professorMenuScraperService;
 
     @GetMapping("/student-lunch-menu")
-    public String getStudent(Model model) throws Exception {
-        // MenuService에서 크롤링한 데이터를 가져오기
-        String menuHtml = studentMenuScraperService.scrapeMenu();
-        // 모델에 데이터를 담아 menu.html로 전달
-        model.addAttribute("menu", menuHtml);
-
-        return "student-menu";  // student-menu.html 파일을 반환
+    public String getStudent() throws Exception {
+        return studentMenuScraperService.scrapeMenu();
     }
 
     @GetMapping("/professor-lunch-menu")
-    public String getProfessor(Model model) throws IOException {
-        // MenuService에서 크롤링한 데이터를 가져오기
-        String menuHtml = professorMenuScraperService.scrapeMenu();
-        // 모델에 데이터를 담아 menu.html로 전달
-        model.addAttribute("menu", menuHtml);
-
-        return "professor-menu";  // student-menu.html 파일을 반환
+    public String getProfessor() throws IOException {
+        return professorMenuScraperService.scrapeMenu();
     }
 
     @GetMapping("/{id}/increment-count")
@@ -73,10 +57,7 @@ public class MenuController {
     }
 
     @GetMapping("/admin-page")
-    public String getAdminPage(Model model) {
-        List<Menu> menus = menuService.getAllMenus();
-        model.addAttribute("menus", menus);
-        return "adminpage";
+    public List<Menu> getAdminPage() {
+        return menuService.getAllMenus();
     }
-
 }
