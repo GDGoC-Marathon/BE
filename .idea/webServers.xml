@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="41cd1ef7-a5d9-4af2-9508-ee7010b5f791" name="marathon-server">
+        <fileTransfer accessType="SFTP" host="15.164.154.28" port="22" sshConfigId="620ff3c5-18e2-4bf5-8f8e-e20d744a6c1a" sshConfig="ubuntu@15.164.154.28:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
