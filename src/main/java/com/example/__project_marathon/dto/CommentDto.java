@@ -1,6 +1,6 @@
 package com.example.__project_marathon.dto;
 
-import com.example.__project_marathon.model.Comment;
+import com.example.__project_marathon.model.Comments;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +12,7 @@ public class CommentDto {
     private String writer;
     private String content;
 
-    public static CommentDto createCommentDto(Comment comment){
+    public static CommentDto createCommentDto(Comments comment){
         return new CommentDto(
                 comment.getId(),
                 comment.getWriter(),

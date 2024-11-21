@@ -1,14 +1,12 @@
 package com.example.__project_marathon.service;
 
 import com.example.__project_marathon.dto.CommentDto;
-import com.example.__project_marathon.model.Menu;
 import com.example.__project_marathon.repository.CommentRepository;
-import com.example.__project_marathon.model.Comment;
+import com.example.__project_marathon.model.Comments;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,8 +18,8 @@ public class CommentService {
 
     @Transactional
     public CommentDto createComment(CommentDto commentDto){
-        Comment comment = Comment.createComment(commentDto);
-        Comment createdComment = commentRepository.save(comment);
+        Comments comment = Comments.createComment(commentDto);
+        Comments createdComment = commentRepository.save(comment);
 
         return CommentDto.createCommentDto(createdComment);
     }

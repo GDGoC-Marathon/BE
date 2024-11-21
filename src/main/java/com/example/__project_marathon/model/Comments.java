@@ -8,10 +8,10 @@ import lombok.*;
 @Setter
 @Entity
 @Builder
-@Table(name = "COMMENT")
+@Table(name = "COMMENTS")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comment extends BaseEntity {
+public class Comments extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +23,17 @@ public class Comment extends BaseEntity {
     @Column
     private String content;
 
-    public Comment(String writer, String content){
+    public Comments(String writer, String content){
         this.writer = writer;
         this.content = content;
     }
 
-    public static Comment createComment(CommentDto commentDto){
+    public static Comments createComment(CommentDto commentDto){
         if(commentDto.getId() != null){
             throw new IllegalArgumentException("이미 존재하는 댓글입니다.");
         }
 
-        return new Comment(commentDto.getWriter(), commentDto.getContent());
+        return new Comments(commentDto.getWriter(), commentDto.getContent());
     }
 
 }
